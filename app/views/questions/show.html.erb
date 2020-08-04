@@ -1,0 +1,56 @@
+<iframe src="/<%= @question.year %><%= @question.month %>_<%= @question.suneng_type %>/<%= @question.number %>.pdf" width="1000px" height="500px"></iframe>
+<p id="notice"><%= notice %></p>
+
+<%# if @question.image.attached? %>
+  <%# if @question.image.previewable? %>
+  <%# end %>
+<%# end %>
+
+<%#= image_tag @question.image.preview(resize_to_limit: [100, 100]) %>
+
+<% if question_scored_by_user?(@question, current_user) %>
+  <%= link_to "👍", "/questions/#{@question.id}/scores", method: :post %>
+<% else %>
+  <%= link_to "👎", "/questions/#{@question.id}/scores", method: :post %>
+<% end %>
+<strong>score : </strong>
+<%#= @question.score %>
+
+
+<p>
+  <strong>Year:</strong>
+  <%= @question.year %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @question.month %>
+</p>
+
+<p>
+  <strong>Institute:</strong>
+  <%= @question.institute %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @question.difficulty %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @question.answer %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @question.price %>
+</p>
+
+<p>
+  <strong>Prize:</strong>
+  <%= @question.prize %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
